@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="973cbbca1c6f45159bb4f377449e7c95" Name="Diagram1">
+        <EntityTypeShape EntityType="MVC_eTicaretModel.Kargo" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC_eTicaretModel.Kategori" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC_eTicaretModel.Marka" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC_eTicaretModel.Musteri" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC_eTicaretModel.MusteriAdres" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC_eTicaretModel.OzellikTip" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC_eTicaretModel.Resim" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC_eTicaretModel.Satis" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC_eTicaretModel.SatisDetay" Width="1.5" PointX="7.5" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC_eTicaretModel.SiparisDurum" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC_eTicaretModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVC_eTicaretModel.Urun" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="MVC_eTicaretModel.FK_Satis_Kargo" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC_eTicaretModel.FK_Kategori_Resim" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC_eTicaretModel.FK_Urun_Kategori" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC_eTicaretModel.FK_Marka_Resim" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC_eTicaretModel.FK_Urun_Marka" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC_eTicaretModel.FK_MusteriAdres_Musteri" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC_eTicaretModel.FK_Satis_Musteri" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC_eTicaretModel.FK_Resim_Urun" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC_eTicaretModel.FK_Satis_SiparisDurum" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC_eTicaretModel.FK_SatisDetay_Satis" ManuallyRouted="false" />
+        <AssociationConnector Association="MVC_eTicaretModel.FK_SatisDetay_Urun" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

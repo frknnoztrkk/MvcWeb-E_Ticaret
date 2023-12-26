@@ -1,0 +1,68 @@
+﻿@using Proje.MvcWebUI.Entity
+@model Urun
+@{
+    ViewBag.Title = "Details";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="~/Image/Xiaomi13T.jpg" class="img-responsive w-100">
+        </div>
+        <div class="col-md-6">
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <h2>
+                        @Model.Adi
+                    </h2>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <span class="badge badge-primary">Stok</span>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <h4 id="ürün-fiyatı">@Model.SatisFiyat TL</h4>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="bd-example bd-example-tabs">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link" id="pills-açıklama-tab" data-toggle="pill" href="#pills-açıklama" role="tab" aria-controls="pills-Açıklama" aria-selected="true">Açıklama</a>
+                                <div class="container">
+                                    @Model.Aciklama
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-12">
+
+                    @using (Html.BeginForm("AddToCart", "Cart"))
+                    {
+                        @Html.HiddenFor(i => i.Id)
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                            Sepete Ekle
+                        </button>
+                    }
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

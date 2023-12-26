@@ -1,0 +1,824 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MVC_eTicaretModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Kargo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SirketAdi" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="500" />
+          <Property Name="Telefon" Type="char" MaxLength="15" />
+          <Property Name="WebSite" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMail" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="500" />
+          <Property Name="ResimId" Type="int" />
+        </EntityType>
+        <EntityType Name="Marka">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adı" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="500" />
+          <Property Name="ResimID" Type="int" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Soyadi" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Telefon" Type="char" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="MusteriAdres">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MusteriID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Adres" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OzellikTip">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Açıklama" Type="nvarchar" MaxLength="500" />
+          <Property Name="KategoriID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Resim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuyukYol" Type="nvarchar" MaxLength="250" />
+          <Property Name="OrtaYol" Type="nvarchar" MaxLength="250" />
+          <Property Name="KucukYol" Type="nvarchar" MaxLength="250" />
+          <Property Name="Varsayılan" Type="bit" />
+          <Property Name="SiraNo" Type="tinyint" />
+          <Property Name="UrunID" Type="int" />
+        </EntityType>
+        <EntityType Name="Satis">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MusteriID" Type="uniqueidentifier" />
+          <Property Name="SatısTarihi" Type="datetime" Nullable="false" />
+          <Property Name="ToplamTutar" Type="money" Nullable="false" />
+          <Property Name="SepetteMi" Type="bit" Nullable="false" />
+          <Property Name="KargoID" Type="int" />
+          <Property Name="SatisDurumID" Type="int" />
+          <Property Name="KargoTakipNo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SatisDetay">
+          <Key>
+            <PropertyRef Name="SatisID" />
+            <PropertyRef Name="UrunID" />
+          </Key>
+          <Property Name="SatisID" Type="int" Nullable="false" />
+          <Property Name="UrunID" Type="int" Nullable="false" />
+          <Property Name="Adet" Type="int" />
+          <Property Name="Fiyat" Type="money" />
+          <Property Name="Indirim" Type="float" />
+        </EntityType>
+        <EntityType Name="SiparisDurum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Urun">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adi" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="500" />
+          <Property Name="AlisFiyat" Type="money" Nullable="false" />
+          <Property Name="SatisFiyat" Type="money" Nullable="false" />
+          <Property Name="KategoriID" Type="int" />
+          <Property Name="MarkaID" Type="int" />
+        </EntityType>
+        <Association Name="FK_Kategori_Resim">
+          <End Role="Resim" Type="Self.Resim" Multiplicity="0..1" />
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resim">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kategori">
+              <PropertyRef Name="ResimId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marka_Resim">
+          <End Role="Resim" Type="Self.Resim" Multiplicity="0..1" />
+          <End Role="Marka" Type="Self.Marka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resim">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Marka">
+              <PropertyRef Name="ResimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MusteriAdres_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="MusteriAdres" Type="Self.MusteriAdres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MusteriAdres">
+              <PropertyRef Name="MusteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Resim_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+          <End Role="Resim" Type="Self.Resim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Resim">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Satis_Kargo">
+          <End Role="Kargo" Type="Self.Kargo" Multiplicity="0..1" />
+          <End Role="Satis" Type="Self.Satis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kargo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Satis">
+              <PropertyRef Name="KargoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Satis_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="0..1" />
+          <End Role="Satis" Type="Self.Satis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Satis">
+              <PropertyRef Name="MusteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Satis_SiparisDurum">
+          <End Role="SiparisDurum" Type="Self.SiparisDurum" Multiplicity="0..1" />
+          <End Role="Satis" Type="Self.Satis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiparisDurum">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Satis">
+              <PropertyRef Name="SatisDurumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SatisDetay_Satis">
+          <End Role="Satis" Type="Self.Satis" Multiplicity="1" />
+          <End Role="SatisDetay" Type="Self.SatisDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Satis">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SatisDetay">
+              <PropertyRef Name="SatisID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SatisDetay_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="1" />
+          <End Role="SatisDetay" Type="Self.SatisDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SatisDetay">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_Kategori">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_Marka">
+          <End Role="Marka" Type="Self.Marka" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marka">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="MarkaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MVC_eTicaretModelStoreContainer">
+          <EntitySet Name="Kargo" EntityType="Self.Kargo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marka" EntityType="Self.Marka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MusteriAdres" EntityType="Self.MusteriAdres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OzellikTip" EntityType="Self.OzellikTip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Resim" EntityType="Self.Resim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Satis" EntityType="Self.Satis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SatisDetay" EntityType="Self.SatisDetay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SiparisDurum" EntityType="Self.SiparisDurum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Urun" EntityType="Self.Urun" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Kategori_Resim" Association="Self.FK_Kategori_Resim">
+            <End Role="Resim" EntitySet="Resim" />
+            <End Role="Kategori" EntitySet="Kategori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marka_Resim" Association="Self.FK_Marka_Resim">
+            <End Role="Resim" EntitySet="Resim" />
+            <End Role="Marka" EntitySet="Marka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MusteriAdres_Musteri" Association="Self.FK_MusteriAdres_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="MusteriAdres" EntitySet="MusteriAdres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Resim_Urun" Association="Self.FK_Resim_Urun">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="Resim" EntitySet="Resim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Satis_Kargo" Association="Self.FK_Satis_Kargo">
+            <End Role="Kargo" EntitySet="Kargo" />
+            <End Role="Satis" EntitySet="Satis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Satis_Musteri" Association="Self.FK_Satis_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Satis" EntitySet="Satis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Satis_SiparisDurum" Association="Self.FK_Satis_SiparisDurum">
+            <End Role="SiparisDurum" EntitySet="SiparisDurum" />
+            <End Role="Satis" EntitySet="Satis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SatisDetay_Satis" Association="Self.FK_SatisDetay_Satis">
+            <End Role="Satis" EntitySet="Satis" />
+            <End Role="SatisDetay" EntitySet="SatisDetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SatisDetay_Urun" Association="Self.FK_SatisDetay_Urun">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="SatisDetay" EntitySet="SatisDetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_Kategori" Association="Self.FK_Urun_Kategori">
+            <End Role="Kategori" EntitySet="Kategori" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_Marka" Association="Self.FK_Urun_Marka">
+            <End Role="Marka" EntitySet="Marka" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MVC_eTicaretModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Kargo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SirketAdi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adres" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="WebSite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Satis" Relationship="Self.FK_Satis_Kargo" FromRole="Kargo" ToRole="Satis" />
+        </EntityType>
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ResimId" Type="Int32" />
+          <NavigationProperty Name="Resim" Relationship="Self.FK_Kategori_Resim" FromRole="Kategori" ToRole="Resim" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_Urun_Kategori" FromRole="Kategori" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="Marka">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adı" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ResimID" Type="Int32" />
+          <NavigationProperty Name="Resim" Relationship="Self.FK_Marka_Resim" FromRole="Marka" ToRole="Resim" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_Urun_Marka" FromRole="Marka" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Soyadi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="MusteriAdres" Relationship="Self.FK_MusteriAdres_Musteri" FromRole="Musteri" ToRole="MusteriAdres" />
+          <NavigationProperty Name="Satis" Relationship="Self.FK_Satis_Musteri" FromRole="Musteri" ToRole="Satis" />
+        </EntityType>
+        <EntityType Name="MusteriAdres">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MusteriID" Type="Guid" Nullable="false" />
+          <Property Name="Adres" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK_MusteriAdres_Musteri" FromRole="MusteriAdres" ToRole="Musteri" />
+        </EntityType>
+        <EntityType Name="OzellikTip">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Açıklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="KategoriID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Resim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuyukYol" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="OrtaYol" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="KucukYol" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Varsayılan" Type="Boolean" />
+          <Property Name="SiraNo" Type="Byte" />
+          <Property Name="UrunID" Type="Int32" />
+          <NavigationProperty Name="Kategori" Relationship="Self.FK_Kategori_Resim" FromRole="Resim" ToRole="Kategori" />
+          <NavigationProperty Name="Marka" Relationship="Self.FK_Marka_Resim" FromRole="Resim" ToRole="Marka" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_Resim_Urun" FromRole="Resim" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="Satis">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MusteriID" Type="Guid" />
+          <Property Name="SatısTarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ToplamTutar" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="SepetteMi" Type="Boolean" Nullable="false" />
+          <Property Name="KargoID" Type="Int32" />
+          <Property Name="SatisDurumID" Type="Int32" />
+          <Property Name="KargoTakipNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kargo" Relationship="Self.FK_Satis_Kargo" FromRole="Satis" ToRole="Kargo" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK_Satis_Musteri" FromRole="Satis" ToRole="Musteri" />
+          <NavigationProperty Name="SiparisDurum" Relationship="Self.FK_Satis_SiparisDurum" FromRole="Satis" ToRole="SiparisDurum" />
+          <NavigationProperty Name="SatisDetay" Relationship="Self.FK_SatisDetay_Satis" FromRole="Satis" ToRole="SatisDetay" />
+        </EntityType>
+        <EntityType Name="SatisDetay">
+          <Key>
+            <PropertyRef Name="SatisID" />
+            <PropertyRef Name="UrunID" />
+          </Key>
+          <Property Name="SatisID" Type="Int32" Nullable="false" />
+          <Property Name="UrunID" Type="Int32" Nullable="false" />
+          <Property Name="Adet" Type="Int32" />
+          <Property Name="Fiyat" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Indirim" Type="Double" />
+          <NavigationProperty Name="Satis" Relationship="Self.FK_SatisDetay_Satis" FromRole="SatisDetay" ToRole="Satis" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_SatisDetay_Urun" FromRole="SatisDetay" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="SiparisDurum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Satis" Relationship="Self.FK_Satis_SiparisDurum" FromRole="SiparisDurum" ToRole="Satis" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Urun">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adi" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AlisFiyat" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="SatisFiyat" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="KategoriID" Type="Int32" />
+          <Property Name="MarkaID" Type="Int32" />
+          <NavigationProperty Name="Kategori" Relationship="Self.FK_Urun_Kategori" FromRole="Urun" ToRole="Kategori" />
+          <NavigationProperty Name="Marka" Relationship="Self.FK_Urun_Marka" FromRole="Urun" ToRole="Marka" />
+          <NavigationProperty Name="Resim" Relationship="Self.FK_Resim_Urun" FromRole="Urun" ToRole="Resim" />
+          <NavigationProperty Name="SatisDetay" Relationship="Self.FK_SatisDetay_Urun" FromRole="Urun" ToRole="SatisDetay" />
+        </EntityType>
+        <Association Name="FK_Satis_Kargo">
+          <End Role="Kargo" Type="Self.Kargo" Multiplicity="0..1" />
+          <End Role="Satis" Type="Self.Satis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kargo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Satis">
+              <PropertyRef Name="KargoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kategori_Resim">
+          <End Role="Resim" Type="Self.Resim" Multiplicity="0..1" />
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resim">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kategori">
+              <PropertyRef Name="ResimId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_Kategori">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="KategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marka_Resim">
+          <End Role="Resim" Type="Self.Resim" Multiplicity="0..1" />
+          <End Role="Marka" Type="Self.Marka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Resim">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Marka">
+              <PropertyRef Name="ResimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_Marka">
+          <End Role="Marka" Type="Self.Marka" Multiplicity="0..1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marka">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="MarkaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MusteriAdres_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="MusteriAdres" Type="Self.MusteriAdres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MusteriAdres">
+              <PropertyRef Name="MusteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Satis_Musteri">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="0..1" />
+          <End Role="Satis" Type="Self.Satis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Satis">
+              <PropertyRef Name="MusteriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Resim_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="0..1" />
+          <End Role="Resim" Type="Self.Resim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Resim">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Satis_SiparisDurum">
+          <End Role="SiparisDurum" Type="Self.SiparisDurum" Multiplicity="0..1" />
+          <End Role="Satis" Type="Self.Satis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiparisDurum">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Satis">
+              <PropertyRef Name="SatisDurumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SatisDetay_Satis">
+          <End Role="Satis" Type="Self.Satis" Multiplicity="1" />
+          <End Role="SatisDetay" Type="Self.SatisDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Satis">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SatisDetay">
+              <PropertyRef Name="SatisID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SatisDetay_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="1" />
+          <End Role="SatisDetay" Type="Self.SatisDetay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SatisDetay">
+              <PropertyRef Name="UrunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MVC_eTicaretEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Kargo" EntityType="Self.Kargo" />
+          <EntitySet Name="Kategori" EntityType="Self.Kategori" />
+          <EntitySet Name="Marka" EntityType="Self.Marka" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" />
+          <EntitySet Name="MusteriAdres" EntityType="Self.MusteriAdres" />
+          <EntitySet Name="OzellikTip" EntityType="Self.OzellikTip" />
+          <EntitySet Name="Resim" EntityType="Self.Resim" />
+          <EntitySet Name="Satis" EntityType="Self.Satis" />
+          <EntitySet Name="SatisDetay" EntityType="Self.SatisDetay" />
+          <EntitySet Name="SiparisDurum" EntityType="Self.SiparisDurum" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Urun" EntityType="Self.Urun" />
+          <AssociationSet Name="FK_Satis_Kargo" Association="Self.FK_Satis_Kargo">
+            <End Role="Kargo" EntitySet="Kargo" />
+            <End Role="Satis" EntitySet="Satis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kategori_Resim" Association="Self.FK_Kategori_Resim">
+            <End Role="Resim" EntitySet="Resim" />
+            <End Role="Kategori" EntitySet="Kategori" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_Kategori" Association="Self.FK_Urun_Kategori">
+            <End Role="Kategori" EntitySet="Kategori" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marka_Resim" Association="Self.FK_Marka_Resim">
+            <End Role="Resim" EntitySet="Resim" />
+            <End Role="Marka" EntitySet="Marka" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_Marka" Association="Self.FK_Urun_Marka">
+            <End Role="Marka" EntitySet="Marka" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MusteriAdres_Musteri" Association="Self.FK_MusteriAdres_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="MusteriAdres" EntitySet="MusteriAdres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Satis_Musteri" Association="Self.FK_Satis_Musteri">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Satis" EntitySet="Satis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Resim_Urun" Association="Self.FK_Resim_Urun">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="Resim" EntitySet="Resim" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Satis_SiparisDurum" Association="Self.FK_Satis_SiparisDurum">
+            <End Role="SiparisDurum" EntitySet="SiparisDurum" />
+            <End Role="Satis" EntitySet="Satis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SatisDetay_Satis" Association="Self.FK_SatisDetay_Satis">
+            <End Role="Satis" EntitySet="Satis" />
+            <End Role="SatisDetay" EntitySet="SatisDetay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SatisDetay_Urun" Association="Self.FK_SatisDetay_Urun">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="SatisDetay" EntitySet="SatisDetay" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MVC_eTicaretModelStoreContainer" CdmEntityContainer="MVC_eTicaretEntities">
+          <EntitySetMapping Name="Kargo">
+            <EntityTypeMapping TypeName="MVC_eTicaretModel.Kargo">
+              <MappingFragment StoreEntitySet="Kargo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SirketAdi" ColumnName="SirketAdi" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategori">
+            <EntityTypeMapping TypeName="MVC_eTicaretModel.Kategori">
+              <MappingFragment StoreEntitySet="Kategori">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="ResimId" ColumnName="ResimId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marka">
+            <EntityTypeMapping TypeName="MVC_eTicaretModel.Marka">
+              <MappingFragment StoreEntitySet="Marka">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Adı" ColumnName="Adı" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="ResimID" ColumnName="ResimID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musteri">
+            <EntityTypeMapping TypeName="MVC_eTicaretModel.Musteri">
+              <MappingFragment StoreEntitySet="Musteri">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+                <ScalarProperty Name="Soyadi" ColumnName="Soyadi" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MusteriAdres">
+            <EntityTypeMapping TypeName="MVC_eTicaretModel.MusteriAdres">
+              <MappingFragment StoreEntitySet="MusteriAdres">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OzellikTip">
+            <EntityTypeMapping TypeName="MVC_eTicaretModel.OzellikTip">
+              <MappingFragment StoreEntitySet="OzellikTip">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+                <ScalarProperty Name="Açıklama" ColumnName="Açıklama" />
+                <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Resim">
+            <EntityTypeMapping TypeName="MVC_eTicaretModel.Resim">
+              <MappingFragment StoreEntitySet="Resim">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BuyukYol" ColumnName="BuyukYol" />
+                <ScalarProperty Name="OrtaYol" ColumnName="OrtaYol" />
+                <ScalarProperty Name="KucukYol" ColumnName="KucukYol" />
+                <ScalarProperty Name="Varsayılan" ColumnName="Varsayılan" />
+                <ScalarProperty Name="SiraNo" ColumnName="SiraNo" />
+                <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Satis">
+            <EntityTypeMapping TypeName="MVC_eTicaretModel.Satis">
+              <MappingFragment StoreEntitySet="Satis">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MusteriID" ColumnName="MusteriID" />
+                <ScalarProperty Name="SatısTarihi" ColumnName="SatısTarihi" />
+                <ScalarProperty Name="ToplamTutar" ColumnName="ToplamTutar" />
+                <ScalarProperty Name="SepetteMi" ColumnName="SepetteMi" />
+                <ScalarProperty Name="KargoID" ColumnName="KargoID" />
+                <ScalarProperty Name="SatisDurumID" ColumnName="SatisDurumID" />
+                <ScalarProperty Name="KargoTakipNo" ColumnName="KargoTakipNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SatisDetay">
+            <EntityTypeMapping TypeName="MVC_eTicaretModel.SatisDetay">
+              <MappingFragment StoreEntitySet="SatisDetay">
+                <ScalarProperty Name="SatisID" ColumnName="SatisID" />
+                <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+                <ScalarProperty Name="Adet" ColumnName="Adet" />
+                <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+                <ScalarProperty Name="Indirim" ColumnName="Indirim" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiparisDurum">
+            <EntityTypeMapping TypeName="MVC_eTicaretModel.SiparisDurum">
+              <MappingFragment StoreEntitySet="SiparisDurum">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MVC_eTicaretModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Urun">
+            <EntityTypeMapping TypeName="MVC_eTicaretModel.Urun">
+              <MappingFragment StoreEntitySet="Urun">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Adi" ColumnName="Adi" />
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="AlisFiyat" ColumnName="AlisFiyat" />
+                <ScalarProperty Name="SatisFiyat" ColumnName="SatisFiyat" />
+                <ScalarProperty Name="KategoriID" ColumnName="KategoriID" />
+                <ScalarProperty Name="MarkaID" ColumnName="MarkaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

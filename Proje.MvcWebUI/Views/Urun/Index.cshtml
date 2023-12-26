@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Proje.MvcWebUI.Entity.Urun>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}<div class="container">
+
+    <div class="container">
+
+        <table class="table table-bordered table-striped ">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Kategori.Adi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Adi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Aciklama)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SatisFiyat)
+                </th>
+                
+                <th style="width:190px;"></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Kategori.Adi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Adi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Aciklama)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SatisFiyat)
+                    </td>
+                    
+
+                    <td>
+                        @Html.ActionLink("Güncelle", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Kaldır", "Delete", new { id = item.Id }, new { @class = "btn btn-dark" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <div>
+            @Html.ActionLink("Ürün Ekle", "Create", null, new { @class = "btn btn-info" })
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@model Proje.MvcWebUI.Entity.Kategori
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container">
+
+    <h3>Seçtiğiniz Kategrori Kaldırılacak</h3>
+    <div>
+        <br />
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Adi)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Adi)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Aciklama)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Aciklama)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Kaldır" class="btn btn-danger" />
+                @Html.ActionLink("Geri", "Index", null, new { @class = "btn btn-info" })
+            </div>
+        }
+    </div>
+</div>

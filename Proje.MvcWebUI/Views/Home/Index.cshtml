@@ -1,0 +1,54 @@
+﻿@using Proje.MvcWebUI.Models 
+@model IEnumerable<ProductModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="container" >
+
+    <div class="row">
+
+        <div class="col-md-2" >
+            @Html.Action("GetCategories","Home")
+        </div>
+
+        <div class="col-md-10" >
+            @if (Model.Count() == 0)
+            {
+                <div class="alert alert-danger" role="alert">
+                    Seçtiğiniz kategoride ürün bulunamadı.
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-success" style="width:40%" role="alert">
+                     Seçtiğiniz kategoride <strong>@Model.Count() adet</strong> ürün bulundu.
+                 </div>
+            }
+
+            <div class="row">
+                @foreach (var urun in Model)
+                {
+                    <div class="col-md-4 mb-2">
+                        <div class="card">
+                            <img class="card-img-top" src="~/Image/@urun.Image" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="/Home/Details/@urun.Id"> @urun.Adi</a>
+                                </h5>
+                                <p class="card-text">@urun.Aciklama</p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted ">
+                                    @urun.SatisFiyat
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

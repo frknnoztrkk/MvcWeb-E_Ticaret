@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Proje.MvcWebUI.Models.UserOrderModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Sipariş Bilgileri</h2>
+            <hr />
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Sipariş No</th>
+                        <th>Sipariş Tarihi</th>
+                        <th>Toplam</th>
+                        <th>Durumu</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.OrderNumber</td>
+                            <td>@item.OrderDate</td>
+                            <td>@item.Total</td>
+                            <td style="color:orange">@item.OrderState</td>
+                            <td>
+                                @Html.ActionLink("Sipariş Detay", "Details", new { id = item.Id}, new {@clas="btn btn-primary"})
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>
+

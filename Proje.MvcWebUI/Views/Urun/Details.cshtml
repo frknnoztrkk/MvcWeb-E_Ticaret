@@ -1,0 +1,58 @@
+﻿@model Proje.MvcWebUI.Entity.Urun
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Urun</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategori.Adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategori.Adi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marka.Adı)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marka.Adı)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aciklama)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SatisFiyat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SatisFiyat)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

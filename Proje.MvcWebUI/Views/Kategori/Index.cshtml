@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Proje.MvcWebUI.Entity.Kategori>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container ">
+    <h2>Kategoriler</h2>
+
+
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Adi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aciklama)
+            </th>
+            <th style="width:200px;"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Aciklama)
+                </td>
+                <td>
+                    @Html.ActionLink("Güncelle", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Kaldır", "Delete", new { id = item.Id }, new { @class = "btn btn-dark" })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <p>
+        @Html.ActionLink("Kategori Ekle", "Create", null, new { @class = "btn btn-info" })
+    </p>
+    
+</div>

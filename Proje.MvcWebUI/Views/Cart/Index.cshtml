@@ -1,0 +1,82 @@
+﻿@model Proje.MvcWebUI.Models.Cart
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container pb-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Alışveriş Sepeti</h2>
+            <hr />
+            @if (Model.CartLines.Count > 0)
+            {
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Adet</th>
+                            <th>Ürün Adı</th>
+                            <th>Fiyat</th>
+                            <th>Toplam Fiyat</th>
+                            <td>    </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.CartLines)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="/Image/@item.Urun.Resim" width="50" />
+                                </td>
+                                <td>
+                                    @item.Quantity
+                                </td>
+                                <td>
+                                    @item.Urun.Adi
+                                </td>
+                                <td>
+                                    @item.Urun.SatisFiyat
+                                </td>
+                                <td>
+                                    @((item.Urun.SatisFiyat* item.Quantity).ToString("c"))
+                                </td>
+                                <td>
+                                    @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                                    {
+                                        @Html.Hidden("Id", item.Urun.Id)
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                            Çıkar
+                                        </button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5"></td>
+                            <td>
+                                @Model.Total().ToString("c")
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <a href="/Home/Index" class="btn btn-secondary" >Alışverişe Geri Dön</a>
+                <a href="/Cart/Checkout" class="btn btn-success">Devam Et</a>
+            }
+
+            else
+            {
+                <div class="alert alert-warning" role="alert">
+                    Sepetinizde ürün bulunmamaktadır.
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+

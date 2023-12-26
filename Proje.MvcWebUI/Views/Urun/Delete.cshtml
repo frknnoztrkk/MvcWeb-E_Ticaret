@@ -1,0 +1,60 @@
+﻿@model Proje.MvcWebUI.Entity.Urun
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+
+    <h3>Seçtiğiniz Ürün Kaldırılacak</h3>
+    <br />
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Kategori.Adi)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Kategori.Adi)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Adi)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Adi)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Aciklama)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Aciklama)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SatisFiyat)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SatisFiyat)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" /> 
+                @Html.ActionLink("Geri", "Index", null, new { @class = "btn btn-info" })
+            </div>
+
+        }
+    </div>
+</div>
